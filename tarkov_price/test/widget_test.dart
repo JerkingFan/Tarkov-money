@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:tarkov_price/main.dart';
+import 'package:tarkov_price/widgets/foreground.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
