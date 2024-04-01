@@ -58,6 +58,5 @@ Future<void> main_() async {
   ''';
 
   var result = await runQuery(newQuery);
-  print(result);
   writeJsonToFile(result, 'output.json');
 }
