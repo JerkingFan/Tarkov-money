@@ -2,6 +2,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 
+final List name = [];
+final List shortName = [];
+final List updated = [];
+final List low_price = [];
+
 Future<void> main() async {
   const String newQuery = '''
   {
@@ -16,7 +21,6 @@ Future<void> main() async {
   ''';
 
   var result = await runQuery(newQuery);
-  print(result);
 }
 
 Future<Map<String, dynamic>> runQuery(String query) async {
@@ -59,4 +63,24 @@ Future<void> main_() async {
 
   var result = await runQuery(newQuery);
   writeJsonToFile(result, 'output.json');
+
+  final file = File('output.json');
+  String contents = file.readAsStringSync();
+
+  String jsonString = contents; // Ваш JSON-строка
+  Map<String, dynamic> data = jsonDecode(jsonString);
+
+  // Теперь вы можете обращаться к данным как к словарю
+  List<dynamic> items = data['data']['items'];
+  for (var item in items) {
+
+    name.add(item['name']);
+    shortName.add(item['shortName']);
+    updated.add(item['updated']);
+    low_price.add(item['lastLowPrice']);
+
+  }
+
+  print(name);
+
 }

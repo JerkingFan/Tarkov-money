@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tarkov_price/api/requets.dart';
+
+
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+  MyApp({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +48,14 @@ class MyApp extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView(
-                    children : const [
-                      SizedBox(height: 25,),
-                      Button_item(),  
-                      SizedBox(height: 25,),
-                      Button_item(),  
-                      SizedBox(height: 25,),
-                      Button_item(),  
-                      SizedBox(height: 25,),
-                      Button_item(),  
-                      SizedBox(height: 25,),
-                      Button_item(),  
-                      SizedBox(height: 25,),
-                      Button_item(),  
-                      SizedBox(height: 25,),
-                      Button_item(),              
-                      SizedBox(height: 25,),
-                           
-                  
-                  ]),
+                    children: shortName.take(10).map((number) => Column(
+                      children: [
+                        const SizedBox(height: 25,),
+                        Button_item(number: number),  
+                        const SizedBox(height: 25,),
+                      ],
+                    )).toList(),
+                  ),
                 ),
               ),
             ],
@@ -72,8 +67,11 @@ class MyApp extends StatelessWidget {
 }
 
 class Button_item extends StatelessWidget {
+  final String number;
+
   const Button_item({
     super.key,
+    required this.number,
   });
 
   @override
@@ -90,22 +88,22 @@ class Button_item extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(32))
         )
       ), 
-      child: const Column(
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
-              Text("Colt 5.45", style: TextStyle(color: Colors.white),),
-              SizedBox(width: 30,),
-              Text('Avg', style: TextStyle(color: Colors.white)),
-              SizedBox(width: 30,),
-              Text('High', style: TextStyle(color: Colors.white)),
+              Text("$number", style: const TextStyle(color: Colors.white),),
+              const SizedBox(width: 30,),
+              Text('Avg', style: const TextStyle(color: Colors.white)),
+              const SizedBox(width: 30,),
+              Text('High', style: const TextStyle(color: Colors.white)),
             ],
           ),
           Row(
             children: [
-              Text("Last update:", style: TextStyle(color: Colors.white), ),
-              Text("22-05-2022", style: TextStyle(color: Colors.white),),
+              const Text("Last update:", style: TextStyle(color: Colors.white), ),
+              Text("22-05-2022", style: const TextStyle(color: Colors.white),),
             ],
           ),
         ],
