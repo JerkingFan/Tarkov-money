@@ -4,10 +4,7 @@ import 'package:tarkov_price/api/requets.dart';
 
 
 class MyApp extends StatelessWidget {
-
   MyApp({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +40,17 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                   ),
-              const SizedBox(height: 25,),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView(
-                    children: shortName.take(10).map((number) => Column(
+                    children: List.generate(shortName.length, (index) => Column(
                       children: [
                         const SizedBox(height: 25,),
-                        Button_item(number: number),  
+                        Button_item(name: shortName[index], price: low_price[index], update: updated[index],),  
                         const SizedBox(height: 25,),
                       ],
-                    )).toList(),
+                    )),
                   ),
                 ),
               ),
@@ -67,17 +63,21 @@ class MyApp extends StatelessWidget {
 }
 
 class Button_item extends StatelessWidget {
-  final String number;
+  final String name;
+  final int price;
+  final String update;
 
   const Button_item({
     super.key,
-    required this.number,
+    required this.name,
+    required this.price,
+    required this.update
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-    width: 250,
+    width: 350,
     height: 100,
     child: ElevatedButton(
       onPressed: (){},
@@ -93,17 +93,17 @@ class Button_item extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text("$number", style: const TextStyle(color: Colors.white),),
+              Text("$name", style: const TextStyle(color: Colors.white),),
               const SizedBox(width: 30,),
-              Text('Avg', style: const TextStyle(color: Colors.white)),
+              const Text("Last Low Price: ",style: TextStyle(color: Colors.white),),
+              Text('$price', style: const TextStyle(color: Colors.white)),
               const SizedBox(width: 30,),
-              Text('High', style: const TextStyle(color: Colors.white)),
             ],
           ),
           Row(
             children: [
-              const Text("Last update:", style: TextStyle(color: Colors.white), ),
-              Text("22-05-2022", style: const TextStyle(color: Colors.white),),
+              const Text("Last update: ", style: TextStyle(color: Colors.white), ),
+              Text("$update", style: const TextStyle(color: Colors.white),),
             ],
           ),
         ],
