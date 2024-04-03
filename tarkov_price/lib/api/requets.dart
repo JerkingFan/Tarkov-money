@@ -6,6 +6,7 @@ final List name = [];
 final List shortName = [];
 final List updated = [];
 final List low_price = [];
+final List image_link = [];
 
 Future<void> main() async {
   const String newQuery = '''
@@ -56,7 +57,14 @@ Future<void> main_() async {
           name
           shortName
           updated
-          lastLowPrice
+          avg24hPrice
+          iconLink
+          updated
+          sellFor {
+            price
+            source
+          }
+
       }
   }
   ''';
@@ -74,10 +82,18 @@ Future<void> main_() async {
   List<dynamic> items = data['data']['items'];
   for (var item in items) {
 
-    name.add(item['name']);
-    shortName.add(item['shortName']);
-    updated.add(item['updated']);
-    low_price.add(item['lastLowPrice']);
+    if (item['avg24hPrice'] != 0){
+
+      name.add(item['name']);
+      shortName.add(item['shortName']);
+      updated.add(item['updated']);
+      low_price.add(item['avg24hPrice']);
+      image_link.add(item['iconLink']);
+
+    }
+    else{
+      continue;
+    }
 
   }
 
