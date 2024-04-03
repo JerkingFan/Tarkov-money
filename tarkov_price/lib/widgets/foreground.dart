@@ -97,6 +97,7 @@ class _MyAppState extends State<MyApp> {
                               price: low_price[index],
                               update: updated[index],
                               image_link: image_link[index],
+                              per_slot: square[index],
                             ),
                           ],
                         );
@@ -117,6 +118,7 @@ class Button_item extends StatelessWidget {
   final int price;
   final String update;
   final String image_link;
+  final int per_slot;
 
   const Button_item({
     super.key,
@@ -124,6 +126,7 @@ class Button_item extends StatelessWidget {
     required this.price,
     required this.update,
     required this.image_link,
+    required this.per_slot,
   });
 
   @override
@@ -161,6 +164,7 @@ class Button_item extends StatelessWidget {
             maxLines: 2,
             style: const TextStyle(color: Colors.white, fontSize: 14),
           ),
+          const SizedBox(height: 5,),
           Text(
             "Updated ${Jiffy.parse("$update").fromNow()}",
             style: TextStyle(fontSize: 12),
@@ -169,8 +173,11 @@ class Button_item extends StatelessWidget {
       ),
     ),
     Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text('$price₽', style: const TextStyle(color: Colors.white)),
+        Text('$price₽', style: const TextStyle(color: Colors.white, fontSize: 16)),
+        Text("$per_slot₽/slot",
+              style: TextStyle(fontSize: 12))
       ],
     ),
   ],

@@ -7,6 +7,9 @@ final List shortName = [];
 final List updated = [];
 final List low_price = [];
 final List image_link = [];
+final List square = [];
+int _square = 0;
+int per_slot = 0;
 
 Future<void> main() async {
   const String newQuery = '''
@@ -57,6 +60,8 @@ Future<void> main_() async {
           name
           shortName
           updated
+          width
+          height
           avg24hPrice
           iconLink
           updated
@@ -84,11 +89,14 @@ Future<void> main_() async {
 
     if (item['avg24hPrice'] != 0){
 
+      _square = item['width'] * item['height'];
+      per_slot = (item['avg24hPrice'] ~/ _square).toInt();
       name.add(item['name']);
       shortName.add(item['shortName']);
       updated.add(item['updated']);
       low_price.add(item['avg24hPrice']);
       image_link.add(item['iconLink']);
+      square.add(per_slot);
 
     }
     else{
