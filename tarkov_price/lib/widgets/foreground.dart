@@ -12,7 +12,77 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final myController = TextEditingController();
   List<dynamic> filteredNames = name;
+  bool up = true;
+  
+void sortByAscendingPrice() {
+  List<Map<String, dynamic>> items = [];
+  
 
+  for (int i = 0; i < name.length; i++) {
+    items.add({
+      'name': name[i],
+      'shortName': shortName[i],
+      'updated': updated[i],
+      'low_price': low_price[i],
+      'image_link': image_link[i],
+      'square': square[i],
+    });
+  }
+
+  items.sort((a, b) => a['low_price'].compareTo(b['low_price']));
+
+  // Обновление списков после сортировки
+  name.clear();
+  shortName.clear();
+  updated.clear();
+  low_price.clear();
+  image_link.clear();
+  square.clear();
+
+  for (var item in items) {
+    name.add(item['name']);
+    shortName.add(item['shortName']);
+    updated.add(item['updated']);
+    low_price.add(item['low_price']);
+    image_link.add(item['image_link']);
+    square.add(item['square']);
+  }
+}
+
+// Сортировка данных по убыванию цены
+void sortByDescendingPrice() {
+  List<Map<String, dynamic>> items = [];
+
+  for (int i = 0; i < name.length; i++) {
+    items.add({
+      'name': name[i],
+      'shortName': shortName[i],
+      'updated': updated[i],
+      'low_price': low_price[i],
+      'image_link': image_link[i],
+      'square': square[i],
+    });
+  }
+
+  items.sort((a, b) => b['low_price'].compareTo(a['low_price']));
+
+  // Обновление списков после сортировки
+  name.clear();
+  shortName.clear();
+  updated.clear();
+  low_price.clear();
+  image_link.clear();
+  square.clear();
+
+  for (var item in items) {
+    name.add(item['name']);
+    shortName.add(item['shortName']);
+    updated.add(item['updated']);
+    low_price.add(item['low_price']);
+    image_link.add(item['image_link']);
+    square.add(item['square']);
+  }
+}
   @override
   void dispose() {
     // Очистка ресурсов контроллера при удалении виджета
@@ -44,38 +114,23 @@ class _MyAppState extends State<MyApp> {
             backgroundColor: const Color.fromRGBO(28, 28, 28, 1),
             foregroundColor: const Color.fromRGBO(117, 117, 117, 1),
 
-            // actions: [
-            //   Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       SizedBox(
-            //             width: 250,
-            //             child: TextField(
-            //               enabled: false,
-            //               enableInteractiveSelection: false,
-            //               controller: myController,
-            //               decoration: const InputDecoration(
-            //                 border: OutlineInputBorder(),
-            //                 hintStyle: TextStyle(color: Colors.white),
-            //               ),
-            //               style: const TextStyle(
-            //                 color: Colors.white
-            //               ),
-            //             ),
-            //           ),
-            //       IconButton(onPressed: () {
-            //               int flag = 0;
-            //               String result = myController.text;
-            //               flag++;
-            //               setState(() {                
-            //                 if (flag == 1){
-            //                   filteredNames = shortName.where((name) => name == result).toList();
-            //                 }
-            //               });
-            //             }, icon: Icon(Icons.search))
-            //     ],
-            //   ),
-            // ],
+            actions: [
+              IconButton(onPressed: () {
+                setState(() {
+                  if (up) {
+                  sortByAscendingPrice(); 
+                  filteredNames = name.toList();
+                  up = false;
+                  }
+                  else{
+                    sortByDescendingPrice();
+                    filteredNames = name.toList();
+                    up = true;
+                  }
+                });
+            }, 
+            icon: Icon(Icons.sort))
+            ],
 
           ),
           backgroundColor: Colors.transparent,
@@ -193,3 +248,36 @@ class Button_item extends StatelessWidget {
 }
 
 
+
+            // actions: [
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       SizedBox(
+            //             width: 250,
+            //             child: TextField(
+            //               enabled: false,
+            //               enableInteractiveSelection: false,
+            //               controller: myController,
+            //               decoration: const InputDecoration(
+            //                 border: OutlineInputBorder(),
+            //                 hintStyle: TextStyle(color: Colors.white),
+            //               ),
+            //               style: const TextStyle(
+            //                 color: Colors.white
+            //               ),
+            //             ),
+            //           ),
+            //       IconButton(onPressed: () {
+            //               int flag = 0;
+            //               String result = myController.text;
+            //               flag++;
+            //               setState(() {                
+            //                 if (flag == 1){
+            //                   filteredNames = shortName.where((name) => name == result).toList();
+            //                 }
+            //               });
+            //             }, icon: Icon(Icons.search))
+            //     ],
+            //   ),
+            // ],
