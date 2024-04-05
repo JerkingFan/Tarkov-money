@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tarkov_price/api/requets.dart';
 import 'package:tarkov_price/widgets/foreground.dart';
 import 'package:tarkov_price/widgets/listview_medicine.dart';
 
-void main() {
+void main() async{
+
+    await main_();
     runApp(MaterialApp(
     title: 'Your App',
     initialRoute: '/',

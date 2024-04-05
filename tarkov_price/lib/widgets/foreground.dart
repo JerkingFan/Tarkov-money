@@ -18,13 +18,6 @@ class _Base_PageState extends State<Base_Page> {
   bool up = true;
 
   @override
-  void dispose() {
-    // Очистка ресурсов контроллера при удалении виджета
-    myController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Material(
         child: Container(
