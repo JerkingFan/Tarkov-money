@@ -1,88 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:tarkov_price/api/requets.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:tarkov_price/functions/sorting.dart';
+import 'package:tarkov_price/functions/left_widgets.dart';
+import 'package:tarkov_price/widgets/listview_medicine.dart';
 
 
 
-class MyApp extends StatefulWidget {
+class Base_Page extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _Base_PageState createState() => _Base_PageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _Base_PageState extends State<Base_Page> {
   final myController = TextEditingController();
   List<dynamic> filteredNames = name;
   bool up = true;
-  
-void sortByAscendingPrice() {
-  List<Map<String, dynamic>> items = [];
-  
 
-  for (int i = 0; i < name.length; i++) {
-    items.add({
-      'name': name[i],
-      'shortName': shortName[i],
-      'updated': updated[i],
-      'low_price': low_price[i],
-      'image_link': image_link[i],
-      'square': square[i],
-    });
-  }
-
-  items.sort((a, b) => a['low_price'].compareTo(b['low_price']));
-
-  // Обновление списков после сортировки
-  name.clear();
-  shortName.clear();
-  updated.clear();
-  low_price.clear();
-  image_link.clear();
-  square.clear();
-
-  for (var item in items) {
-    name.add(item['name']);
-    shortName.add(item['shortName']);
-    updated.add(item['updated']);
-    low_price.add(item['low_price']);
-    image_link.add(item['image_link']);
-    square.add(item['square']);
-  }
-}
-
-// Сортировка данных по убыванию цены
-void sortByDescendingPrice() {
-  List<Map<String, dynamic>> items = [];
-
-  for (int i = 0; i < name.length; i++) {
-    items.add({
-      'name': name[i],
-      'shortName': shortName[i],
-      'updated': updated[i],
-      'low_price': low_price[i],
-      'image_link': image_link[i],
-      'square': square[i],
-    });
-  }
-
-  items.sort((a, b) => b['low_price'].compareTo(a['low_price']));
-
-  // Обновление списков после сортировки
-  name.clear();
-  shortName.clear();
-  updated.clear();
-  low_price.clear();
-  image_link.clear();
-  square.clear();
-
-  for (var item in items) {
-    name.add(item['name']);
-    shortName.add(item['shortName']);
-    updated.add(item['updated']);
-    low_price.add(item['low_price']);
-    image_link.add(item['image_link']);
-    square.add(item['square']);
-  }
-}
   @override
   void dispose() {
     // Очистка ресурсов контроллера при удалении виджета
@@ -93,78 +27,80 @@ void sortByDescendingPrice() {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment(0.8, 1),
-            colors: <Color>[
-              Color.fromRGBO(28, 28, 28, 1),
-              Color.fromRGBO(18, 18, 18, 1),
-            ],
-          )
-        ),
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(onPressed: (){}, 
-                                icon: const Icon(Icons.list), 
-                                style: const ButtonStyle(
-                                      foregroundColor: MaterialStatePropertyAll(Colors.white)),),
-            title: const Text("Search", style: TextStyle(color: Colors.white),),
-            backgroundColor: const Color.fromRGBO(28, 28, 28, 1),
-            foregroundColor: const Color.fromRGBO(117, 117, 117, 1),
-
-            actions: [
-              IconButton(onPressed: () {
-                setState(() {
-                  if (up) {
-                  sortByAscendingPrice(); 
-                  filteredNames = name.toList();
-                  up = false;
-                  }
-                  else{
-                    sortByDescendingPrice();
-                    filteredNames = name.toList();
-                    up = true;
-                  }
-                });
-            }, 
-            icon: Icon(Icons.sort))
-            ],
-
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment(0.8, 1),
+              colors: <Color>[
+                Color.fromRGBO(28, 28, 28, 1),
+                Color.fromRGBO(18, 18, 18, 1),
+              ],
+            )
           ),
-          backgroundColor: Colors.transparent,
-          body:
-          Column(
-            children: [
-              const SizedBox(height: 25,),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
-                      itemCount: filteredNames.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            SizedBox(height: 5),
-                            Button_item(
-                              name: filteredNames[index],
-                              price: low_price[index],
-                              update: updated[index],
-                              image_link: image_link[index],
-                              per_slot: square[index],
-                            ),
-                          ],
-                        );
-                      },
-                    ),
+          child: Scaffold(
+            appBar: AppBar(
+              leading: IconButton(onPressed: (){
+                showModal(context, 'Page');
+              }, 
+                                  icon: const Icon(Icons.list), 
+                                  style: const ButtonStyle(
+                                        foregroundColor: MaterialStatePropertyAll(Colors.white)),),
+              title: const Text("Search", style: TextStyle(color: Colors.white),),
+              backgroundColor: const Color.fromRGBO(28, 28, 28, 1),
+              foregroundColor: const Color.fromRGBO(117, 117, 117, 1),
+      
+              actions: [
+                IconButton(onPressed: () {
+                  setState(() {
+                    if (up) {
+                    sortByAscendingPrice(); 
+                    filteredNames = name.toList();
+                    up = false;
+                    }
+                    else{
+                      sortByDescendingPrice();
+                      filteredNames = name.toList();
+                      up = true;
+                    }
+                  });
+              }, 
+              icon: Icon(Icons.sort))
+              ],
+      
+            ),
+            backgroundColor: Colors.transparent,
+            body:
+            Column(
+              children: [
+                const SizedBox(height: 25,),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                        itemCount: filteredNames.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              SizedBox(height: 5),
+                              Button_item(
+                                name: filteredNames[index],
+                                price: low_price[index],
+                                update: updated[index],
+                                image_link: image_link[index],
+                                per_slot: square[index],
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                  ),
                 ),
-              ),
-            ],
-          ) 
+              ],
+            ) 
+          )
         )
-      )
-    );
+      );
   }
 }
 
@@ -281,3 +217,5 @@ class Button_item extends StatelessWidget {
             //     ],
             //   ),
             // ],
+
+

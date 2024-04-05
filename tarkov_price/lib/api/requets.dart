@@ -8,24 +8,10 @@ final List updated = [];
 final List low_price = [];
 final List image_link = [];
 final List square = [];
+final List types = [];
 int _square = 0;
 int per_slot = 0;
 
-Future<void> main() async {
-  const String newQuery = '''
-  {
-      items {
-          id
-          name
-          shortName
-          updated
-          lastLowPrice
-      }
-  }
-  ''';
-
-  var result = await runQuery(newQuery);
-}
 
 Future<Map<String, dynamic>> runQuery(String query) async {
   final response = await http.post(
@@ -58,6 +44,7 @@ Future<void> main_() async {
       items {
           id
           name
+          types
           shortName
           updated
           width
@@ -94,6 +81,7 @@ Future<void> main_() async {
       name.add(item['name']);
       shortName.add(item['shortName']);
       updated.add(item['updated']);
+      types.add(item['types']);
       low_price.add(item['avg24hPrice']);
       image_link.add(item['iconLink']);
       square.add(per_slot);
