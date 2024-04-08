@@ -53,12 +53,12 @@ class _MedicineState extends State<Medicine> {
               IconButton(onPressed: () {
                 setState(() {
                   if (up) {
-                  sortByAscendingPrice(); 
+                  sortByAscendingPrice_Medicine(); 
                   filteredNames = name.toList();
                   up = false;
                   }
                   else{
-                    sortByDescendingPrice();
+                    sortByDescendingPrice_Medicine();
                     filteredNames = name.toList();
                     up = true;
                   }
@@ -83,6 +83,7 @@ class _MedicineState extends State<Medicine> {
                           children: [
                             SizedBox(height: 5),
                             Button_item(
+                              type: types[index],
                               name: filteredNames[index],
                               price: low_price[index],
                               update: updated[index],
@@ -108,6 +109,7 @@ class Button_item extends StatelessWidget {
   final int price;
   final String update;
   final String image_link;
+  final List type;
   final int per_slot;
 
   const Button_item({
@@ -117,6 +119,7 @@ class Button_item extends StatelessWidget {
     required this.update,
     required this.image_link,
     required this.per_slot,
+    required this.type,
   });
 
   @override

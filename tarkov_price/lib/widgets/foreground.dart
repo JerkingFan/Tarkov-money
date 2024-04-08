@@ -77,6 +77,7 @@ class _Base_PageState extends State<Base_Page> {
                             children: [
                               SizedBox(height: 5),
                               Button_item(
+                                type: types[index],
                                 name: filteredNames[index],
                                 price: low_price[index],
                                 update: updated[index],
@@ -102,6 +103,7 @@ class Button_item extends StatelessWidget {
   final int price;
   final String update;
   final String image_link;
+  final List type;
   final int per_slot;
 
   const Button_item({
@@ -111,6 +113,7 @@ class Button_item extends StatelessWidget {
     required this.update,
     required this.image_link,
     required this.per_slot,
+    required this.type,
   });
 
   @override

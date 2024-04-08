@@ -92,8 +92,8 @@ Future<void> main_() async {
     }
 
   }
+  print(types);
 
-  print(name);
 
 }
 
