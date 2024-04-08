@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tarkov_price/api/requets.dart';
+import 'package:tarkov_price/widgets/body_armor.dart';
 import 'package:tarkov_price/widgets/foreground.dart';
+import 'package:tarkov_price/widgets/headphones.dart';
 import 'package:tarkov_price/widgets/listview_medicine.dart';
 
 void main() async{
@@ -12,6 +14,8 @@ void main() async{
     routes: {
       '/': (context) => Base_Page(),
       '/medicine': (context) => Medicine(),
+      '/armor': (context) => Armor(),
+      '/headphones': (context) => Headphones(),
       // добавьте здесь другие маршруты, если необходимо
     },
   ));

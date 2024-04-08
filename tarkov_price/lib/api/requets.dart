@@ -9,6 +9,31 @@ final List low_price = [];
 final List image_link = [];
 final List square = [];
 final List types = [];
+
+final List name_med = [];
+final List shortName_med = [];
+final List updated_med = [];
+final List low_price_med = [];
+final List image_link_med = [];
+final List square_med = [];
+final List types_med = [];
+
+final List name_armor = [];
+final List shortName_armor = [];
+final List updated_armor = [];
+final List low_price_armor = [];
+final List image_link_armor = [];
+final List square_armor = [];
+final List types_armor = [];
+
+final List name_headphones = [];
+final List shortName_headphones = [];
+final List updated_headphones = [];
+final List low_price_headphones = [];
+final List image_link_headphones = [];
+final List square_headphones = [];
+final List types_headphones = [];
+
 int _square = 0;
 int per_slot = 0;
 
@@ -91,8 +116,52 @@ Future<void> main_() async {
       continue;
     }
 
+    if (item['types'].contains('meds')){
+
+      _square = item['width'] * item['height'];
+      per_slot = (item['avg24hPrice'] ~/ _square).toInt();
+      name_med.add(item['name']);
+      shortName_med.add(item['shortName']);
+      updated_med.add(item['updated']);
+      types_med.add(item['types']);
+      low_price_med.add(item['avg24hPrice']);
+      image_link_med.add(item['iconLink']);
+      square_med.add(per_slot);
+
+    }
+    else{
+      if (item['types'].contains("armor")){
+
+          _square = item['width'] * item['height'];
+          per_slot = (item['avg24hPrice'] ~/ _square).toInt();
+          name_armor.add(item['name']);
+          shortName_armor.add(item['shortName']);
+          updated_armor.add(item['updated']);
+          types_armor.add(item['types']);
+          low_price_armor.add(item['avg24hPrice']);
+          image_link_armor.add(item['iconLink']);
+          square_armor.add(per_slot);
+
+    }
+    else{
+        if (item['types'].contains("headphones")){
+
+          _square = item['width'] * item['height'];
+          per_slot = (item['avg24hPrice'] ~/ _square).toInt();
+          name_headphones.add(item['name']);
+          shortName_headphones.add(item['shortName']);
+          updated_headphones.add(item['updated']);
+          types_headphones.add(item['types']);
+          low_price_headphones.add(item['avg24hPrice']);
+          image_link_headphones.add(item['iconLink']);
+          square_headphones.add(per_slot);
+
+    }
+    }
+    }
+
   }
-  print(types);
+  //print(types);
 
 
 }

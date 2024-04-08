@@ -51,7 +51,9 @@ void showModal(BuildContext context, String modalTitle) {
                     ),
                   )),
                   
-                  TextButton(onPressed: (){}, 
+                  TextButton(onPressed: (){
+                     Navigator.pushNamed(context, '/armor');
+                  }, 
                   style: const ButtonStyle(
                     foregroundColor: MaterialStatePropertyAll(Color.fromRGBO(117, 117, 117, 1),)
                   ),
@@ -66,7 +68,9 @@ void showModal(BuildContext context, String modalTitle) {
                       ],
                     ),
                   )),
-                  TextButton(onPressed: (){}, child: const Padding(
+                  TextButton(onPressed: (){
+                     Navigator.pushNamed(context, '/headphones');
+                  }, child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Row(
                       children: [

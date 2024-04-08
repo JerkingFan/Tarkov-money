@@ -6,15 +6,15 @@ import 'package:tarkov_price/functions/left_widgets.dart';
 
 
 
-class Medicine extends StatefulWidget {
+class Headphones extends StatefulWidget {
   @override
-  _MedicineState createState() => _MedicineState();
+  _HeadphonesState createState() => _HeadphonesState();
 }
 
-class _MedicineState extends State<Medicine> {
+class _HeadphonesState extends State<Headphones> {
   final myController = TextEditingController();
-  List<dynamic> filteredNames = name_med;
-  bool up = true;
+  List<dynamic> filteredNames = name_headphones;
+  bool _up = true;
 
   @override
   void dispose() {
@@ -52,15 +52,15 @@ class _MedicineState extends State<Medicine> {
             actions: [
               IconButton(onPressed: () {
                 setState(() {
-                  if (up) {
+                  if (_up) {
                   sortByAscendingPrice(); 
-                  filteredNames = name_med.toList();
-                  up = false;
+                  filteredNames = name_headphones.toList();
+                  _up = false;
                   }
                   else{
                     sortByDescendingPrice();
-                    filteredNames = name_med.toList();
-                    up = true;
+                    filteredNames = name_headphones.toList();
+                    _up = true;
                   }
                 });
             }, 
@@ -83,12 +83,12 @@ class _MedicineState extends State<Medicine> {
                           children: [
                             SizedBox(height: 5),
                             Button_item(
-                              type: types_med[index],
+                              type: types_headphones[index],
                               name: filteredNames[index],
-                              price: low_price_med[index],
-                              update: updated_med[index],
-                              image_link: image_link_med[index],
-                              per_slot: square_med[index],
+                              price: low_price_headphones[index],
+                              update: updated_headphones[index],
+                              image_link: image_link_headphones[index],
+                              per_slot: square_headphones[index],
                             ),
                           ],
                         );
