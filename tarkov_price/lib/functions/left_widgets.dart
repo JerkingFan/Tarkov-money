@@ -82,6 +82,45 @@ void showModal(BuildContext context, String modalTitle) {
                     ),
                   )),
 
+                  TextButton(onPressed: (){
+                    Navigator.pushNamed(context, '/ammo'); // Переход на страницу Medicine при нажатии
+                  }, child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.send, color: Colors.white ,),
+                        Spacer(),
+                        Text("Ammo", style: TextStyle(color: Colors.white),),
+                        Spacer(),
+                      ],
+                    ),
+                  )),
+                    TextButton(onPressed: (){
+                    Navigator.pushNamed(context, '/gun'); // Переход на страницу Medicine при нажатии
+                  }, child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete_forever, color: Colors.white ,),
+                        Spacer(),
+                        Text("Weapon", style: TextStyle(color: Colors.white),),
+                        Spacer(),
+                      ],
+                    ),
+                  )),
+                    TextButton(onPressed: (){
+                    Navigator.pushNamed(context, '/keys'); // Переход на страницу Medicine при нажатии
+                  }, child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.key_sharp, color: Colors.white ,),
+                        Spacer(),
+                        Text("Keys", style: TextStyle(color: Colors.white),),
+                        Spacer(),
+                      ],
+                    ),
+                  )),
                 ],
               ),
             ),

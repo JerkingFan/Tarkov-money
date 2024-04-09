@@ -34,6 +34,30 @@ final List image_link_headphones = [];
 final List square_headphones = [];
 final List types_headphones = [];
 
+final List name_ammo = [];
+final List shortName_ammo = [];
+final List updated_ammo = [];
+final List low_price_ammo = [];
+final List image_link_ammo = [];
+final List square_ammo = [];
+final List types_ammo = [];
+
+final List name_gun = [];
+final List shortName_gun = [];
+final List updated_gun = [];
+final List low_price_gun = [];
+final List image_link_gun = [];
+final List square_gun = [];
+final List types_gun = [];
+
+final List name_keys = [];
+final List shortName_keys = [];
+final List updated_keys = [];
+final List low_price_keys = [];
+final List image_link_keys = [];
+final List square_keys = [];
+final List types_keys = [];
+
 int _square = 0;
 int per_slot = 0;
 
@@ -156,6 +180,51 @@ Future<void> main_() async {
           image_link_headphones.add(item['iconLink']);
           square_headphones.add(per_slot);
 
+    }
+    else{
+        if (item['types'].contains("ammo") && !item['types'].contains("grenade") ){
+
+          _square = item['width'] * item['height'];
+          per_slot = (item['avg24hPrice'] ~/ _square).toInt();
+          name_ammo.add(item['name']);
+          shortName_ammo.add(item['shortName']);
+          updated_ammo.add(item['updated']);
+          types_ammo.add(item['types']);
+          low_price_ammo.add(item['avg24hPrice']);
+          image_link_ammo.add(item['iconLink']);
+          square_ammo.add(per_slot);
+
+    }
+    else{
+        if (item['types'].contains("gun") ){
+
+          _square = item['width'] * item['height'];
+          per_slot = (item['avg24hPrice'] ~/ _square).toInt();
+          name_gun.add(item['name']);
+          shortName_gun.add(item['shortName']);
+          updated_gun.add(item['updated']);
+          types_gun.add(item['types']);
+          low_price_gun.add(item['avg24hPrice']);
+          image_link_gun.add(item['iconLink']);
+          square_gun.add(per_slot);
+
+    }
+    else{
+        if (item['types'].contains("keys") ){
+
+          _square = item['width'] * item['height'];
+          per_slot = (item['avg24hPrice'] ~/ _square).toInt();
+          name_keys.add(item['name']);
+          shortName_keys.add(item['shortName']);
+          updated_keys.add(item['updated']);
+          types_keys.add(item['types']);
+          low_price_keys.add(item['avg24hPrice']);
+          image_link_keys.add(item['iconLink']);
+          square_keys.add(per_slot);
+
+    }
+    }
+    }
     }
     }
     }
