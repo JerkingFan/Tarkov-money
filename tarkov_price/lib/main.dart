@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tarkov_price/functions/item_info.dart';
 import 'package:tarkov_price/widgets/ammo.dart';
 import 'package:tarkov_price/widgets/body_armor.dart';
 import 'package:tarkov_price/widgets/foreground.dart';
@@ -12,7 +13,7 @@ void main() async{
     runApp(MaterialApp(
     title: 'Your App',
     initialRoute: '/',
-    routes: {
+    routes: {//Item_Info_Page(),
       '/': (context) => Base_Page(),
       '/medicine': (context) => Medicine(),
       '/armor': (context) => Armor(),
